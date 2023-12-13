@@ -1,7 +1,15 @@
+import Container from "react-bootstrap/Container";
+
+import Header from "./components/Header/Header";
+import AppRoutes from "./routes/AppRoutes";
+
 function App() {
   return (
     <div className="App">
-      <h1>Hello world!</h1>
+      <Header />
+      <Container>
+        <AppRoutes />
+      </Container>
     </div>
   );
 }
