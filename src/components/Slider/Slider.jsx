@@ -6,7 +6,7 @@ import bannerKWomen from "../../assets/images/banner_women.png";
 
 const Slider = () => {
   return (
-    <Carousel data-bs-theme="dark">
+    <Carousel data-bs-theme="dark" className="mt-3">
       <Carousel.Item>
         <img className="d-block w-100" src={bannerKids} alt="First slide" />
       </Carousel.Item>
