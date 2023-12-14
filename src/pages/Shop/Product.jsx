@@ -1,6 +1,11 @@
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
+
 import "./Product.scss";
 
 const Product = (props) => {
+  const { addToCart } = useContext(CartContext);
+
   const { id, title, price, category, description, image } = props.data;
 
   return (
@@ -11,16 +16,16 @@ const Product = (props) => {
       <div className="card-content">
         <p className="card-category">{category}</p>
         <h3 className="card-title">{title}</h3>
-        <p className="card-price">$ {price}</p>
+        <p className="card-price">$ {price.toFixed(2)}</p>
       </div>
 
       <div className="card-button">
-        <div className="card-add">
-          <i class="fa-solid fa-plus"></i>
+        <div className="card-add" onClick={() => addToCart(props.data)}>
+          <i className="fa-solid fa-plus"></i>
         </div>
 
         <div className="card-detail">
-          <i class="fa-solid fa-eye"></i>
+          <i className="fa-solid fa-eye"></i>
         </div>
       </div>
     </div>

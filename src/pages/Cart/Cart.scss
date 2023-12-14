@@ -1,0 +1,26 @@
+.cart-header {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.cart-info {
+  .cart-product {
+    width: 100px;
+  }
+
+  .cart-image {
+    width: 100px;
+    overflow: hidden;
+  }
+
+  .cart-image img {
+    width: 50%;
+    object-fit: cover;
+  }
+
+  .btn {
+    padding: 0px 4px !important;
+  }
+}

@@ -23,8 +23,8 @@ const Shop = () => {
     <>
       <Slider />
       <div
-        className=" mt-5 d-flex align-items-center justify-content-center flex-wrap"
-        style={{ marginLeft: "20px" }}
+        className="row mt-5 d-flex align-items-center justify-content-center flex-wrap"
+        style={{ marginLeft: "10px" }}
       >
         {productList.map((product, index) => {
           return (
