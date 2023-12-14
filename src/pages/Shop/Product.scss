@@ -73,21 +73,29 @@
     transform: translateX(130%);
     transition: 0.5s;
 
-    div {
-      padding: 5px 10px;
+    div,
+    a {
       border-radius: 5px;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+
+      &:hover {
+        scale: 1.1;
+      }
     }
 
     .card-add {
       color: #fff;
       background-color: #b63f3f;
-      box-shadow: rgb(0 0 0 / 20%) 0px 2px 0px 0px;
     }
 
     .card-detail {
-      color: #b63f3f;
-      background-color: #fff;
-      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      color: #333;
+      background-color: #d5d5d5;
     }
   }
 }

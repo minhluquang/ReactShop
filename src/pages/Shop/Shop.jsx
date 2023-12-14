@@ -1,23 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 
 import Slider from "../../components/Slider/Slider";
 import Product from "./Product";
 
-import { fetchAllProducts } from "../../services/ProductService";
+import { ProductContext } from "../../context/ProductContext";
 
 const Shop = () => {
-  const [productList, setProductList] = useState([]);
-
-  const getProducts = async () => {
-    const res = await fetchAllProducts();
-    if (res) {
-      setProductList(res);
-    }
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
+  const { productList } = useContext(ProductContext);
 
   return (
     <>

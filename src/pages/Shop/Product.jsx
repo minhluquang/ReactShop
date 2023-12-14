@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 
 import "./Product.scss";
+import { NavLink } from "react-router-dom";
 
 const Product = (props) => {
   const { addToCart } = useContext(CartContext);
@@ -24,9 +25,9 @@ const Product = (props) => {
           <i className="fa-solid fa-plus"></i>
         </div>
 
-        <div className="card-detail">
+        <NavLink to={`/product/${id}`} className="card-detail" >
           <i className="fa-solid fa-eye"></i>
-        </div>
+        </NavLink>
       </div>
     </div>
   );

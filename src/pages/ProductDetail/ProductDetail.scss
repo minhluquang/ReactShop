@@ -1,0 +1,32 @@
+.productDetail-container {
+  margin: 30px 0 !important;
+  height: 650px;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  div {
+    height: 100%;
+  }
+
+  .productDetail-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 50%;
+    }
+  }
+
+  .productDetail-info {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+
+    b {
+      font-size: 18px;
+    }
+  }
+}
