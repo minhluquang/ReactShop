@@ -73,8 +73,10 @@
     transform: translateX(130%);
     transition: 0.5s;
 
-    div,
+    button,
     a {
+      outline: none;
+      border: none;
       border-radius: 5px;
       width: 34px;
       height: 34px;
@@ -85,6 +87,15 @@
 
       &:hover {
         scale: 1.1;
+      }
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      background-color: #ae7878;
+
+      &:hover {
+        scale: 1;
       }
     }
 
