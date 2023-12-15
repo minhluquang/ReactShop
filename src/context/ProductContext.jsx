@@ -10,7 +10,7 @@ const ProductContext = React.createContext();
 // This also works: const UserContext = createContext();
 
 const ProductProvider = ({ children }) => {
-  const [originalProductList, setOriginalProductList] = useState([]);
+  const [storeProductList, setStoreProductList] = useState([]);
   const [productList, setProductList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,7 +19,7 @@ const ProductProvider = ({ children }) => {
     const res = await fetchAllProducts();
     if (res) {
       setProductList(res);
-      setOriginalProductList(res);
+      setStoreProductList(res);
     }
     setIsLoading(false);
   };
@@ -37,6 +37,7 @@ const ProductProvider = ({ children }) => {
       const res = await fetchProductsByCategory(type);
       if (res) {
         setProductList(res);
+        setStoreProductList(res);
       }
       setIsLoading(false);
     }
@@ -56,7 +57,7 @@ const ProductProvider = ({ children }) => {
         handleCategory,
         isLoading,
         handleFilter,
-        originalProductList
+        storeProductList,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import _ from "lodash";
 
 import Slider from "../../components/Slider/Slider";
@@ -9,20 +9,19 @@ import Category from "../../components/Category/Category";
 import { ProductContext } from "../../context/ProductContext";
 
 const Shop = () => {
-  const { productList, setProductList, originalProductList, isLoading } =
-    useContext(ProductContext);
+  const { productList, setProductList, isLoading, storeProductList } = useContext(ProductContext);
 
   const handleSearch = async (event) => {
     let term = event.target.value;
     if (term) {
       // Get all product for search...
-      let productListClone = _.cloneDeep(originalProductList);
+      let productListClone = _.cloneDeep(storeProductList);
       productListClone = productListClone.filter((item) =>
         item.title.toLowerCase().includes(term.toLowerCase().trim())
       );
       setProductList(productListClone);
     } else if (term.trim() === "") {
-      setProductList(originalProductList);
+      setProductList(storeProductList);
     }
   };
 
