@@ -45,3 +45,24 @@
     }
   }
 }
+
+// Reponsive
+@media (max-width: 576px) {
+  // Styles for small screens
+  .productDetail-container {
+    height: auto;
+
+    .productDetail-image {
+      padding: 10px 0;
+    }
+
+    .productDetail-info {
+      margin-top: 8px;
+      justify-content: start;
+    }
+
+    .productDetail-actions {
+      margin-bottom: 15px;
+    }
+  }
+}

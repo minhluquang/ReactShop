@@ -168,7 +168,7 @@ const ProductDetail = () => {
             {isLoading ? (
               <Skeleton className="mt-2" style={{ width: "20%" }} />
             ) : (
-              <span className="">
+              <span className="productDetail-actions">
                 <span className="quantity d-flex justify-content-center align-items-center gap-3 mb-3">
                   <Button
                     variant="outline-dark"
