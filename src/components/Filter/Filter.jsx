@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+
+import { ProductContext } from "../../context/ProductContext";
 import { Dropdown } from "react-bootstrap";
 
 import "./Filter.scss";
@@ -6,7 +8,7 @@ import "./Filter.scss";
 const Filter = (props) => {
   const [showPriceFilter, setShowPriceFilter] = useState(false);
   const [showNameFilter, setShowNameFilter] = useState(false);
-  const { productList } = props;
+  const { handleFilter } = useContext(ProductContext);
 
   const togglePriceFilter = (event) => {
     event.stopPropagation();
@@ -17,10 +19,6 @@ const Filter = (props) => {
   const toggleNameFilter = (event) => {
     event.stopPropagation();
     setShowNameFilter(!showNameFilter);
-    setShowPriceFilter(false);
-  };
-
-  const closePriceFilter = () => {
     setShowPriceFilter(false);
   };
 
@@ -38,16 +36,20 @@ const Filter = (props) => {
             <div className="d-flex align-items-center justify-content-between">
               <span>Price</span>
               {showPriceFilter ? (
-                <i class="fa-solid fa-caret-up"></i>
+                <i className="fa-solid fa-caret-up"></i>
               ) : (
-                <i class="fa-solid fa-caret-down"></i>
+                <i className="fa-solid fa-caret-down"></i>
               )}
             </div>
           </Dropdown.Item>
           {showPriceFilter && (
             <div>
-              <Dropdown.Item>Low to high</Dropdown.Item>
-              <Dropdown.Item>High to low</Dropdown.Item>
+              <Dropdown.Item onClick={() => handleFilter("price", "asc")}>
+                Low to high
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleFilter("price", "desc")}>
+                High to low
+              </Dropdown.Item>
             </div>
           )}
 
@@ -58,16 +60,20 @@ const Filter = (props) => {
             <div className="d-flex align-items-center justify-content-between">
               <span>Name</span>
               {showNameFilter ? (
-                <i class="fa-solid fa-caret-up"></i>
+                <i className="fa-solid fa-caret-up"></i>
               ) : (
-                <i class="fa-solid fa-caret-down"></i>
+                <i className="fa-solid fa-caret-down"></i>
               )}
             </div>
           </Dropdown.Item>
           {showNameFilter && (
             <div>
-              <Dropdown.Item>A-Z</Dropdown.Item>
-              <Dropdown.Item>Z-A</Dropdown.Item>
+              <Dropdown.Item onClick={() => handleFilter("title", "asc")}>
+                A-Z
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleFilter("title", "desc")}>
+                Z-A
+              </Dropdown.Item>
             </div>
           )}
         </Dropdown.Menu>

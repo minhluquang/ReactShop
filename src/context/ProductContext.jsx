@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import _ from "lodash";
+
 import {
   fetchAllProducts,
   fetchProductsByCategory,
@@ -38,9 +40,25 @@ const ProductProvider = ({ children }) => {
     }
   };
 
+  const handleFilter = (sortField, sortBy) => {
+    console.log("Sort Field:", sortField);
+    console.log("Sort By:", sortBy);
+    console.log("Old array: ", productList);
+
+    let result = _.cloneDeep(productList);
+    result = _.orderBy(result, [sortField], [sortBy]);
+    setProductList(result);
+  };
+
   return (
     <ProductContext.Provider
-      value={{ productList, setProductList, handleCategory, isLoading }}
+      value={{
+        productList,
+        setProductList,
+        handleCategory,
+        isLoading,
+        handleFilter,
+      }}
     >
       {children}
     </ProductContext.Provider>

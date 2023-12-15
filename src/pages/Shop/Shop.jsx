@@ -13,8 +13,8 @@ const Shop = () => {
   return (
     <>
       <Slider />
-      <Category productList={productList} />
-      <Filter />
+      <Category />
+      <Filter productList={productList} />
       {isLoading ? (
         <div className="d-flex justify-content-center fs-1 mt-5">
           <i className="fa-solid fa-spinner fa-spin-pulse"></i>
