@@ -1,3 +1,6 @@
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Row, Col, Image, Button } from "react-bootstrap";
@@ -19,12 +22,16 @@ const ProductDetail = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [stars, setStars] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isImageLoad, setIsImageLoad] = useState(false);
 
   const fetchDetailData = async () => {
+    setIsLoading(true);
     const res = await fetchDetailProduct(id);
     if (res) {
       setProduct(res);
     }
+    setIsLoading(false);
   };
 
   const handleRating = () => {
@@ -90,33 +97,67 @@ const ProductDetail = () => {
     }
   };
 
+  const handleImageLoad = () => {
+    setIsImageLoad(true);
+  };
+
   return (
     <>
       {product && (
         <Row className="productDetail-container">
           <Col md={6} className="productDetail-image">
-            <Image src={product.image} alt={product.title} />
+            {isLoading && (
+              <i className="fa-solid fa-spinner fa-spin-pulse fs-1 text-black-50"></i>
+            )}
+            <Image
+              src={product.image}
+              alt={product.title}
+              onLoad={handleImageLoad}
+              style={{ display: isImageLoad ? "block" : "none" }}
+            />
           </Col>
           <Col md={6} className="productDetail-info">
-            <span className="text-muted border-bottom text-capitalize">
-              {product.category}
-            </span>
-            <h2 className="mt-2">{product.title}</h2>
-            <span className="d-flex align-item-center justify-content-center mb-2">
-              <span className="rating">
-                {stars && stars.length > 0 && stars.map((item) => item)}
+            {isLoading ? (
+              <Skeleton style={{ width: "30%" }} />
+            ) : (
+              <>
+                <span className="text-muted border-bottom text-capitalize">
+                  {product.category}
+                </span>
+              </>
+            )}
+            {isLoading ? (
+              <Skeleton count={2} />
+            ) : (
+              <h2 className="mt-2">{product.title}</h2>
+            )}
+            {isLoading ? (
+              <Skeleton style={{ width: "50%" }} className="mt-2" />
+            ) : (
+              <span className="d-flex align-item-center justify-content-center mb-2">
+                <span className="rating">
+                  {stars && stars.length > 0 && stars.map((item) => item)}
+                </span>
+                <span className="ms-2">
+                  ({product && product.rating && product.rating.count})
+                </span>
               </span>
-              <span className="ms-2">
-                ({product && product.rating && product.rating.count})
-              </span>
-            </span>
-            <b className="mb-2">
-              Price: <span className="text-danger">${product.price}</span>
-            </b>
-            <p>{product.description}</p>
-            <Button variant="dark" onClick={() => handleAddToCart()}>
-              Add to Cart
-            </Button>
+            )}
+            {isLoading ? (
+              <Skeleton style={{ width: "40%" }} className="my-2" />
+            ) : (
+              <b className="mb-2">
+                Price: <span className="text-danger">${product.price}</span>
+              </b>
+            )}
+            {isLoading ? <Skeleton count={3} /> : <p>{product.description}</p>}
+            {isLoading ? (
+              <Skeleton className="mt-2" style={{ width: "20%" }} />
+            ) : (
+              <Button variant="dark" onClick={() => handleAddToCart()}>
+                Add to Cart
+              </Button>
+            )}
           </Col>
         </Row>
       )}
