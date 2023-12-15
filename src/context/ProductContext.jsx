@@ -39,7 +39,9 @@ const ProductProvider = ({ children }) => {
   };
 
   return (
-    <ProductContext.Provider value={{ productList, handleCategory, isLoading }}>
+    <ProductContext.Provider
+      value={{ productList, setProductList, handleCategory, isLoading }}
+    >
       {children}
     </ProductContext.Provider>
   );

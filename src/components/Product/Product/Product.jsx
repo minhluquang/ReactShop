@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
-import { CartContext } from "../../context/CartContext";
+import { CartContext } from "../../../context/CartContext";
 
 import "./Product.scss";
 import { NavLink } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../../context/UserContext";
 
-import ModalErrorAddProduct from "../../components/ModalErrorAddProduct/ModalErrorAddProduct";
+import ModalErrorAddProduct from "../../ModalErrorAddProduct/ModalErrorAddProduct";
 
 const Product = (props) => {
   const { addToCart } = useContext(CartContext);
@@ -36,7 +36,9 @@ const Product = (props) => {
     <>
       <div className="card-container">
         <div className="card-img">
-          {imageLoading && <i className="fa-solid fa-spinner fa-spin-pulse"></i>}
+          {imageLoading && (
+            <i className="fa-solid fa-spinner fa-spin-pulse"></i>
+          )}
           <img
             src={image}
             alt={title}

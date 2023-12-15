@@ -1,14 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import Slider from "../../components/Slider/Slider";
-import Product from "./Product";
+import Product from "../../components/Product/Product/Product";
+import PaginatedItems from "../../components/PaginatedItems/PaginatedItems";
 
 import { ProductContext } from "../../context/ProductContext";
 import { Button, ButtonGroup } from "react-bootstrap";
 
 const Shop = () => {
   const { productList, handleCategory, isLoading } = useContext(ProductContext);
-
+  // console.log(productList);
   return (
     <>
       <Slider />
@@ -48,18 +49,7 @@ const Shop = () => {
           <i className="fa-solid fa-spinner fa-spin-pulse"></i>
         </div>
       ) : (
-        <div
-          className="row mt-5 d-flex align-items-center justify-content-start flex-wrap"
-          style={{ marginLeft: "10px" }}
-        >
-          {productList.map((product, index) => {
-            return (
-              <div key={product.id} className="col-sm-6 col-md-4 col-lg-3">
-                <Product data={product} />
-              </div>
-            );
-          })}
-        </div>
+        <PaginatedItems itemsPerPage={8} items={productList} />
       )}
     </>
   );

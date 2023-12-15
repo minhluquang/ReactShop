@@ -134,7 +134,7 @@ const ProductDetail = () => {
             {isLoading ? (
               <Skeleton style={{ width: "50%" }} className="mt-2" />
             ) : (
-              <span className="d-flex align-item-center justify-content-center mb-2">
+              <span className="mb-2">
                 <span className="rating">
                   {stars && stars.length > 0 && stars.map((item) => item)}
                 </span>
