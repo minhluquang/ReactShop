@@ -5,22 +5,69 @@
   margin: 10px 0;
 }
 
-.cart-info {
-  .cart-product {
-    width: 100px;
+.cart-detail {
+  overflow: auto;
+
+  .cart-info {
+    .cart-product {
+      width: 100px;
+    }
+
+    .cart-image {
+      width: 100px;
+      overflow: hidden;
+    }
+
+    .cart-image img {
+      width: 50%;
+      object-fit: cover;
+    }
+
+    .btn {
+      padding: 0px 4px !important;
+    }
+  }
+}
+
+// Reponsive
+@media (max-width: 991px) {
+  .cart-detail {
+    font-size: 20px;
+
+    .cart-info {
+      .cart-image img {
+        width: 100%!important;
+      }
+
+      .cart-title {
+        width: 200px !important;
+      }
+
+      .cart-price,
+      .cart-total {
+        width: 100px !important;
+      }
+
+      .cart-actions {
+        width: 150px !important;
+
+        button {
+          padding: 2px 8px !important;
+        }
+
+        .cart-quantity {
+          font-size: 20px;
+          margin: 0 10px !important;
+        }
+      }
+
+      .cart-remove button {
+        padding: 5px 10px!important;
+      }
+    }
   }
 
-  .cart-image {
-    width: 100px;
-    overflow: hidden;
-  }
-
-  .cart-image img {
-    width: 50%;
-    object-fit: cover;
-  }
-
-  .btn {
-    padding: 0px 4px !important;
+  .cart-totalPrice {
+    font-size: 20px!important;
   }
 }

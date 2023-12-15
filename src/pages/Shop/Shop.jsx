@@ -32,7 +32,7 @@ const Shop = () => {
       <Category />
       <div className="d-flex align-items-sm-center justify-content-between mt-sm-5 mt-3 flex-column flex-sm-row align-items-start">
         <input
-          className="rounded col-sm-4 col-12 px-2 py-1"
+          className="rounded col-sm-6 col-md-6 col-lg-5 col-12 px-2 py-1"
           placeholder="Search..."
           onChange={(e) => handleSearch(e)}
         />
