@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { ProductContext } from "../../context/ProductContext";
+import { useEffect, useState } from "react";
 
 import ReactPaginate from "react-paginate";
 import Products from "../Product/Products/Products";
@@ -14,6 +13,8 @@ function PaginatedItems(props) {
   useEffect(() => {
     if (items.length < itemsPerPage) {
       setIsHidePaginate(true);
+    } else {
+      setIsHidePaginate(false);
     }
   }, [items]);
 

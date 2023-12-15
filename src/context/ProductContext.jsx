@@ -10,6 +10,7 @@ const ProductContext = React.createContext();
 // This also works: const UserContext = createContext();
 
 const ProductProvider = ({ children }) => {
+  const [originalProductList, setOriginalProductList] = useState([]);
   const [productList, setProductList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,6 +19,7 @@ const ProductProvider = ({ children }) => {
     const res = await fetchAllProducts();
     if (res) {
       setProductList(res);
+      setOriginalProductList(res);
     }
     setIsLoading(false);
   };
@@ -41,10 +43,6 @@ const ProductProvider = ({ children }) => {
   };
 
   const handleFilter = (sortField, sortBy) => {
-    console.log("Sort Field:", sortField);
-    console.log("Sort By:", sortBy);
-    console.log("Old array: ", productList);
-
     let result = _.cloneDeep(productList);
     result = _.orderBy(result, [sortField], [sortBy]);
     setProductList(result);
@@ -58,6 +56,7 @@ const ProductProvider = ({ children }) => {
         handleCategory,
         isLoading,
         handleFilter,
+        originalProductList
       }}
     >
       {children}
