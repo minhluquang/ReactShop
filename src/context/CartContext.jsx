@@ -30,8 +30,8 @@ const CartProvider = ({ children }) => {
     }
   }, [cart]);
 
-  const addToCart = (product, isShowToast = true) => {
-    const newItem = { ...product, amount: 1 };
+  const addToCart = (product, isShowToast = true, amount = 1) => {
+    const newItem = { ...product, amount: amount };
     const cartItem = cart.find((item) => item.id === product.id);
     // If in your cart has this item
     if (cartItem) {

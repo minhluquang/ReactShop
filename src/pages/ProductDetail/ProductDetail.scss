@@ -5,7 +5,7 @@
   border-radius: 5px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
-  div {
+  .h100 {
     height: 100%;
   }
 
@@ -25,12 +25,23 @@
     align-items: start;
     flex-direction: column;
 
-    span {
+    .w100,
+    [aria-live="polite"] {
       width: 100%;
     }
 
     b {
       font-size: 18px;
-    } 
+    }
+
+    .quantity {
+      border: 1px solid #333;
+      border-radius: 0.375rem;
+
+      button {
+        border: none;
+        border-radius: 0px;
+      }
+    }
   }
 }

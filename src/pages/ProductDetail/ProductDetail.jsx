@@ -12,6 +12,7 @@ import { fetchDetailProduct } from "../../services/ProductService";
 import "./ProductDetail.scss";
 
 import ModalErrorAddProduct from "../../components/ModalErrorAddProduct/ModalErrorAddProduct";
+import { set } from "lodash";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -23,7 +24,9 @@ const ProductDetail = () => {
   const [showModal, setShowModal] = useState(false);
   const [stars, setStars] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isImageLoad, setIsImageLoad] = useState(false);
+  const [isImageLoad, setIsImageLoad] = useState(true);
+
+  const [quantity, setQuantity] = useState(1);
 
   const fetchDetailData = async () => {
     setIsLoading(true);
@@ -91,14 +94,24 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     if (user && user.auth) {
-      addToCart(product);
+      addToCart(product, true, quantity);
     } else {
       setShowModal(true);
     }
   };
 
   const handleImageLoad = () => {
-    setIsImageLoad(true);
+    setIsImageLoad(false);
+  };
+
+  const handleQuantiy = (type) => {
+    if (type === "up") {
+      setQuantity(quantity + 1);
+    } else if (type === "down") {
+      if (quantity > 1) {
+        setQuantity(quantity - 1);
+      }
+    }
   };
 
   return (
@@ -113,15 +126,15 @@ const ProductDetail = () => {
               src={product.image}
               alt={product.title}
               onLoad={handleImageLoad}
-              style={{ display: isImageLoad ? "block" : "none" }}
+              style={{ display: isImageLoad ? "none" : "block" }}
             />
           </Col>
-          <Col md={6} className="productDetail-info">
+          <Col md={6} className="productDetail-info h100">
             {isLoading ? (
               <Skeleton style={{ width: "30%" }} />
             ) : (
               <>
-                <span className="text-muted border-bottom text-capitalize">
+                <span className="text-muted border-bottom text-capitalize w100">
                   {product.category}
                 </span>
               </>
@@ -151,12 +164,30 @@ const ProductDetail = () => {
               </b>
             )}
             {isLoading ? <Skeleton count={3} /> : <p>{product.description}</p>}
+
             {isLoading ? (
               <Skeleton className="mt-2" style={{ width: "20%" }} />
             ) : (
-              <Button variant="dark" onClick={() => handleAddToCart()}>
-                Add to Cart
-              </Button>
+              <span className="">
+                <span className="quantity d-flex justify-content-center align-items-center gap-3 mb-3">
+                  <Button
+                    variant="outline-dark"
+                    onClick={() => handleQuantiy("down")}
+                  >
+                    <i className="fa-solid fa-minus"></i>
+                  </Button>
+                  <span className="fs-4">{quantity}</span>
+                  <Button
+                    variant="outline-dark"
+                    onClick={() => handleQuantiy("up")}
+                  >
+                    <i className="fa-solid fa-plus"></i>
+                  </Button>
+                </span>
+                <Button variant="dark" onClick={() => handleAddToCart()}>
+                  Add to Cart
+                </Button>
+              </span>
             )}
           </Col>
         </Row>
