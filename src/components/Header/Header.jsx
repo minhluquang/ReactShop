@@ -80,7 +80,7 @@ const Header = () => {
               </Nav.Item>
             )}
             {user && user.auth ? (
-              <Nav.Item>
+              <Nav.Item className="mt-sm-0 mt-1">
                 <Button variant="outline-dark" onClick={handleLogout}>
                   Sign out
                 </Button>

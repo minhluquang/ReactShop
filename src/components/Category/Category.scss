@@ -1,0 +1,27 @@
+@media (max-width: 576px) {
+  // Styles for small screens
+  .btn-group {
+    border-radius: 0;
+
+    .category-btn {
+      margin-top: 4px;
+      border: 1px solid #c3c3c3;
+      border-radius: 0px !important;
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 577px) and (max-width: 767px) {
+  // Styles for medium screens
+  .btn-group {
+    border-radius: 0;
+
+    .category-btn {
+      margin-top: 4px;
+      border: 1px solid #c3c3c3;
+      border-radius: 0px !important;
+      width: 100%;
+    }
+  }
+}

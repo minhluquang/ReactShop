@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import _ from "lodash";
 
 import Slider from "../../components/Slider/Slider";
@@ -9,7 +9,8 @@ import Category from "../../components/Category/Category";
 import { ProductContext } from "../../context/ProductContext";
 
 const Shop = () => {
-  const { productList, setProductList, isLoading, storeProductList } = useContext(ProductContext);
+  const { productList, setProductList, isLoading, storeProductList } =
+    useContext(ProductContext);
 
   const handleSearch = async (event) => {
     let term = event.target.value;
@@ -29,9 +30,9 @@ const Shop = () => {
     <>
       <Slider />
       <Category />
-      <div className="d-flex align-items-center justify-content-between mt-5">
+      <div className="d-flex align-items-sm-center justify-content-between mt-sm-5 mt-3 flex-column flex-sm-row align-items-start">
         <input
-          className="rounded col-4 px-2 py-1"
+          className="rounded col-sm-4 col-12 px-2 py-1"
           placeholder="Search..."
           onChange={(e) => handleSearch(e)}
         />

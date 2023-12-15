@@ -4,6 +4,8 @@ import { ProductContext } from "../../context/ProductContext";
 
 import { Button, ButtonGroup } from "react-bootstrap";
 
+import './Category.scss'
+
 const Category = (props) => {
   const { handleCategory } = useContext(ProductContext);
   const [activeCategory, setActiveCategory] = useState("all");
@@ -15,14 +17,14 @@ const Category = (props) => {
 
   return (
     <div className="d-flex align-items-center justify-content-center mt-4">
-      <ButtonGroup aria-label="Basic example">
-        <Button
+      <ButtonGroup aria-label="Basic example" className="flex-wrap">
+        <Button className="category-btn"
           variant={activeCategory === "all" ? "dark" : "outline-dark"}
           onClick={() => handleClickCategory("all")}
         >
           All
         </Button>
-        <Button
+        <Button className="category-btn"
           variant={
             activeCategory === "men's clothing" ? "dark" : "outline-dark"
           }
@@ -30,7 +32,7 @@ const Category = (props) => {
         >
           Men's clothing
         </Button>
-        <Button
+        <Button className="category-btn"
           variant={
             activeCategory === "women's clothing" ? "dark" : "outline-dark"
           }
@@ -38,13 +40,13 @@ const Category = (props) => {
         >
           Women's clothing
         </Button>
-        <Button
+        <Button className="category-btn"
           variant={activeCategory === "jewelery" ? "dark" : "outline-dark"}
           onClick={() => handleClickCategory("jewelery")}
         >
           Jewelery
         </Button>
-        <Button
+        <Button className="category-btn"
           variant={activeCategory === "electronics" ? "dark" : "outline-dark"}
           onClick={() => handleClickCategory("electronics")}
         >

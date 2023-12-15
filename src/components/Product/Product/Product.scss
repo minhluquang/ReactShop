@@ -110,3 +110,13 @@
     }
   }
 }
+
+// Reponsive
+@media (max-width: 576px) {
+  // Styles for small screens
+  .card-container {
+    .card-img img {
+      width: 90px;
+    }
+  }
+}

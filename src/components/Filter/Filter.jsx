@@ -23,7 +23,7 @@ const Filter = (props) => {
   };
 
   return (
-    <div className="d-flex justify-content-end">
+    <div className="d-flex justify-content-end mt-sm-0 mt-3">
       <Dropdown className="filter-container" align={"end"}>
         <Dropdown.Toggle variant="dark" id="dropdown-basic">
           Filter
