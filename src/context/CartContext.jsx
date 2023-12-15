@@ -81,6 +81,10 @@ const CartProvider = ({ children }) => {
     }
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -91,6 +95,7 @@ const CartProvider = ({ children }) => {
         decreaseAmount,
         totalAmount,
         totalPrice,
+        clearCart,
       }}
     >
       {children}

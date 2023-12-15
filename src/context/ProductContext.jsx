@@ -1,25 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { fetchAllProducts } from "../services/ProductService";
+import {
+  fetchAllProducts,
+  fetchProductsByCategory,
+} from "../services/ProductService";
 
 const ProductContext = React.createContext();
 // This also works: const UserContext = createContext();
 
 const ProductProvider = ({ children }) => {
   const [productList, setProductList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    const res = await fetchAllProducts();
+    if (res) {
+      setProductList(res);
+    }
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetchAllProducts();
-      if (res) {
-        setProductList(res);
-      }
-    };
-
     fetchData();
   }, []);
 
+  const handleCategory = async (type) => {
+    if (type === "all") {
+      fetchData();
+    } else {
+      setIsLoading(true);
+
+      const res = await fetchProductsByCategory(type);
+      if (res) {
+        setProductList(res);
+      }
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <ProductContext.Provider value={{ productList }}>
+    <ProductContext.Provider value={{ productList, handleCategory, isLoading }}>
       {children}
     </ProductContext.Provider>
   );

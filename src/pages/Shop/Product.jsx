@@ -14,6 +14,7 @@ const Product = (props) => {
   const { id, title, price, category, description, image } = props.data;
 
   const [showModal, setShowModal] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
 
   const handleClose = () => {
     setShowModal(false);
@@ -27,11 +28,21 @@ const Product = (props) => {
     }
   };
 
+  const handleImageLoad = () => {
+    setImageLoading(false);
+  };
+
   return (
     <>
       <div className="card-container">
         <div className="card-img">
-          <img src={image} alt={title} />
+          {imageLoading && <i className="fa-solid fa-spinner fa-spin-pulse"></i>}
+          <img
+            src={image}
+            alt={title}
+            onLoad={handleImageLoad}
+            style={{ display: imageLoading ? "none" : "block" }}
+          />
         </div>
         <div className="card-content">
           <p className="card-category">{category}</p>

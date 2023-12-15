@@ -7,8 +7,14 @@ import { Button } from "react-bootstrap";
 import "./Cart.scss";
 
 const Cart = () => {
-  const { cart, removeFromCart, increaseAmount, decreaseAmount, totalPrice } =
-    useContext(CartContext);
+  const {
+    cart,
+    removeFromCart,
+    increaseAmount,
+    decreaseAmount,
+    totalPrice,
+    clearCart,
+  } = useContext(CartContext);
 
   return (
     <>
@@ -79,6 +85,12 @@ const Cart = () => {
               </tr>
             </tbody>
           </Table>
+          <div className="float-end">
+            <Button variant="danger" className="me-2" onClick={clearCart}>
+              Clear all
+            </Button>
+            <Button variant="dark">Check out</Button>
+          </div>
         </>
       )}
     </>
