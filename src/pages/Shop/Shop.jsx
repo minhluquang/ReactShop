@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import _ from "lodash";
+import _, { debounce } from "lodash";
 
 import Slider from "../../components/Slider/Slider";
 import PaginatedItems from "../../components/PaginatedItems/PaginatedItems";
@@ -12,8 +12,9 @@ const Shop = () => {
   const { productList, setProductList, isLoading, storeProductList } =
     useContext(ProductContext);
 
-  const handleSearch = async (event) => {
+  const handleSearch = debounce((event) => {
     let term = event.target.value;
+    console.log(term);
     if (term) {
       // Get all product for search...
       let productListClone = _.cloneDeep(storeProductList);
@@ -24,7 +25,7 @@ const Shop = () => {
     } else if (term.trim() === "") {
       setProductList(storeProductList);
     }
-  };
+  }, 500);
 
   return (
     <>
